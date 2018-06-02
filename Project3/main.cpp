@@ -185,7 +185,7 @@ void drawGraph(std::vector<Vertex> &thevertex, int &color)
 		}
 		setfillcolor(cc[it->Color-1]);
 		fillcircle(x1 , y1 , radius);
-		settextstyle(60, 50, ("Courier New"));
+		settextstyle(60, 50, ("msyh"));
 		outtextxy(x1-25, y1-30, (char)it->vertexID + 48);
 	}
 
