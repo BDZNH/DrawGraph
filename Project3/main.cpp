@@ -185,8 +185,8 @@ void drawGraph(std::vector<Vertex> &thevertex, int &color)
 		}
 		setfillcolor(cc[it->Color-1]);
 		fillcircle(x1 , y1 , radius);
-		settextstyle(50, 50, ("新宋体"));
-		outtextxy(x1-25, y1-25, (char)it->vertexID + 48);
+		settextstyle(60, 50, ("Courier New"));
+		outtextxy(x1-25, y1-30, (char)it->vertexID + 48);
 	}
 
 	std::cout << "最少着色数为 :" << color << std::endl;
