@@ -29,7 +29,7 @@ int main()
 
 	std::vector<Vertex> thevertex;
 	getData(thevertex);
-	//std::sort(thevertex, thevertex + thevertex.size(), compare);
+	std::sort(thevertex.begin(),thevertex.end(),compare);
 
 	//着色开始
 	//这一段也是核心逻辑段
@@ -166,8 +166,8 @@ void drawGraph(std::vector<Vertex> &thevertex, int &color)
 		temp.x = x1;
 		temp.y = y1;
 		Coor.push_back(temp);
-		x1 = x2 * cos(Theta) + y2 * sin(Theta);
-		y1 = y2 * cos(Theta) - x2 * sin(Theta);
+		x1 = (int)(x2 * cos(Theta) + y2 * sin(Theta));
+		y1 = (int)(y2 * cos(Theta) - x2 * sin(Theta));
 		x2 = x1;
 		y2 = y1;
 	}

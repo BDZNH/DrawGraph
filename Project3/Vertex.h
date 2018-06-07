@@ -16,11 +16,8 @@ public:
 	int vertexID;//存储当前顶点的编号
 	bool isDraw;//是否被着色，false则当前顶点未着色
 	unsigned short int Color;//当前顶点的颜色
-	Vertex()
+	Vertex():vertex(0), isDraw(false),Color(0),vertexID(0)
 	{
-		vertexID = 0;
-		isDraw = false;
-		Color = 0;
 	}
 	~Vertex() {};
 	void clear()

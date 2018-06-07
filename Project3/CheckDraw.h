@@ -66,4 +66,9 @@ bool isDrawFinished(std::vector<Vertex> &vertex)
 	return true;
 }
 
+
+bool compare(Vertex a, Vertex b) //这个比较函数的参数类型也要写成结构体
+{
+	return a.vertexID<b.vertexID;//">"是进行降序排序，如果要升序改成<，其实sort默认是升序
+}
 #endif // !CHECKDRAW_H
