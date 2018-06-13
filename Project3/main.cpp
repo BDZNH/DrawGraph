@@ -15,8 +15,8 @@
 #include "CheckDraw.h"
 
 
-const int window_width = 800;
-const int window_height = 800;
+const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 800;
 const double Pi = 3.1415926;
 
 void getData(std::vector<Vertex> &thevertex);//数据读取函数声明
@@ -74,9 +74,13 @@ void getData(std::vector<Vertex> &thevertex)
 	}
 	Vertex tt;
 	//vector<Vertex> thevertex;
+
+	//这里建立邻接矩阵的时候是按照不知道顶点数和边数来建立的
+	//也就是这里的while循环，每次读入两个数，代表相连的两个顶点，直到不能再读入数据为止(需要注意的是，这里并没有对数据的有效性进行检查)
 	while (inFile >> temp >> temp2)//不断读入边以建立邻接表
 	{
 		//inFile >> temp2;
+		//下面这个if语句参考发给你的文档
 		if (!findVertex(thevertex, temp, temp2))
 		{
 			tt.vertexID = temp;
@@ -96,7 +100,7 @@ void getData(std::vector<Vertex> &thevertex)
 
 void drawVertex(std::vector<Vertex> &thevertex, int &color)
 {
-	color = 0;
+	color = 0;//color为零表示没有颜色，也就是说，最后着色过的顶点的颜色都不会是0
 	std::vector<Vertex>::iterator it;
 	while (!isDrawFinished(thevertex))
 	{
@@ -123,16 +127,16 @@ void drawGraph(std::vector<Vertex> &thevertex, int &color)
 		int x;
 		int y;
 	}temp;
-	initgraph(window_width, window_height, SHOWCONSOLE);//初始化绘图窗口
+	initgraph(WINDOW_WIDTH, WINDOW_HEIGHT, SHOWCONSOLE);//初始化绘图窗口
 	setfillcolor(WHITE);
 	
-	bar(0, 0, window_width, window_height);
+	bar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 	setlinecolor(BLACK);
 	//circle(400, 400, 50);
 
-	int radius = min(window_height, window_width) / 3;
-	int cenCircleY = window_height / 2, cenCircleX = window_width / 2;//圆心坐标
-	setorigin(cenCircleX, cenCircleY);
+	int radius = min(WINDOW_HEIGHT, WINDOW_WIDTH) / 3;//
+	int cenCircleY = WINDOW_HEIGHT / 2, cenCircleX = WINDOW_WIDTH / 2;//圆心坐标
+	setorigin(cenCircleX, cenCircleY);//重置坐标原点到窗口的中央
 	//circle(-200, -200, 50);
 
 	//确定第一个顶点的坐标
@@ -155,10 +159,10 @@ void drawGraph(std::vector<Vertex> &thevertex, int &color)
 	int x2, y2, x1, y1;
 	x1 = x2 = initX;
 	y1 = y2 = initY;
-	double Theta = (360.0 / thevertex.size())*Pi / 180;
+	double Theta = (360.0 / thevertex.size())*Pi / 180;//每次旋转的角度
 	
 	int i = 1;
-	std::vector<Coordinates> Coor;
+	std::vector<Coordinates> Coor;//用来保存每个顶点的圆心所对应的坐标
 
 	std::vector<Vertex>::iterator it;
 	for (it = thevertex.begin(); it != thevertex.end(); it++)
@@ -166,7 +170,7 @@ void drawGraph(std::vector<Vertex> &thevertex, int &color)
 		temp.x = x1;
 		temp.y = y1;
 		Coor.push_back(temp);
-		x1 = (int)(x2 * cos(Theta) + y2 * sin(Theta));
+		x1 = (int)(x2 * cos(Theta) + y2 * sin(Theta));//逆时针旋转theta角度
 		y1 = (int)(y2 * cos(Theta) - x2 * sin(Theta));
 		x2 = x1;
 		y2 = y1;
